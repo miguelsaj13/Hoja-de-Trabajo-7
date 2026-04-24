@@ -7,8 +7,8 @@ public class ComparableAssociation<K extends Comparable<K>, V> implements Associ
         this.value = value;
     }
 
-    public int compareTo(ComparableAssociation<K,V> that) {
-        return this.getKey().compareTo(that.getKey());
+    public int compareTo(ComparableAssociation<K,V> other) {
+        return this.getKey().compareTo(other.getKey());
     }
 
     @Override
