@@ -1,0 +1,5 @@
+(house, casa) (dog, perro) (homework, tarea) (house, casa) (woman, mujer) (town, pueblo) (yes, sí) 
+(about, sobre)
+(the, la)
+(asked, pregunto)
+(my, mí)

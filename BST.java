@@ -10,42 +10,38 @@ public class BST<E extends Comparable<E>> {
 
     private void insert(E value, BinaryTree<E> root) throws Exception
     {
-        if(root.isEmpty())
-        {
+        if (root.isEmpty()) {
             root.setValue(value);
             return;
         }
-        if(value.compareTo(root.value()) < 0)
-        {
-            if(root.left().isEmpty())
-            {
-                root.setLeft(new BinaryTree<E>(value));
-            }
-            else{
-                insert(value, root.left());
-            }
+
+        if (value.compareTo(root.value()) < 0) {
+            if (root.left() == null)
+                root.setLeft(new BinaryTree<E>());
+            insert(value, root.left());
         }
-        else if(value.compareTo(root.value()) > 0)
-        {
-            if(root.right().isEmpty())
-                {
-                    root.setRight(new BinaryTree<E>(value));
-                }
-            else{
-                insert(value, root.right());
-            }
+        else if (value.compareTo(root.value()) > 0) {
+            if (root.right() == null)
+                root.setRight(new BinaryTree<E>());
+            insert(value, root.right());
         }
-        else{
-            throw new Exception();
+        else {
+            return;
         }
     }
-    public void insert(E value) throws Exception
+
+    public void insert(E value)
     {
-        insert(value, root);
+        try {
+            insert(value, root);
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+        }
     }
     private BinaryTree<E> search(E key, BinaryTree<E> actual)
     {
-        if(actual.isEmpty())
+        if(actual == null || actual.isEmpty())
         {
             return null;
         }
@@ -63,7 +59,7 @@ public class BST<E extends Comparable<E>> {
     }
     private void inOrder(BinaryTree<E> root)
     {
-        if(root.isEmpty())
+        if(root == null || root.isEmpty())
         {
             return;
         }

@@ -5,12 +5,14 @@ public class BinaryTree<E>{
     {
         val = null;
         parent = null; 
-        left = right = this;
+        left = null;
+        right = null;
     }
     public BinaryTree(E value)
     {
         val = value;
-        right = left = new BinaryTree<E>();
+        right = new BinaryTree<E>();
+        left = new BinaryTree<E>();
         setLeft(left);
         setRight(right);
     }
@@ -39,14 +41,14 @@ public class BinaryTree<E>{
         if (isEmpty()) return;
         if (left != null && left.parent() == this) left.setParent(null);
         left = newLeft;
-        left.setParent(this);
+        if(left != null) left.setParent(this);
     }
     public void setRight(BinaryTree<E> newRight)
     {
         if (isEmpty()) return;
         if (right != null && right.parent() == this) right.setParent(null);
         right = newRight;
-        right.setParent(this);
+        if(right != null) right.setParent(this);
     }
     protected void setParent(BinaryTree<E> newParent)
     {
