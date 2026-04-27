@@ -1,4 +1,8 @@
-//leer el .txt, hacer metodo para guardar las palabras con su traduccion en el arbol con comparableassociation
+/**
+ * Clase encargada de manejar archivos de texto.
+ * Permite leer un diccionario, almacenarlo en un BST
+ * y traducir un archivo de texto.
+ */
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,10 +11,20 @@ import java.util.List;
 public class TxtManager {
     BST<ComparableAssociation<String, String>> arbol;
 
+    /**
+     * Constructor que inicializa el árbol vacío.
+     */
     public TxtManager()
     {
         arbol = new BST<>();
     }
+
+    /**
+     * Lee un archivo de diccionario y guarda las palabras
+     * con su traducción en el árbol binario.
+     * 
+     * @param filePath ruta del archivo de diccionario
+     */
     public void crearDiccionario(String filePath) {
         try {
             String contenido = Files.readString(Path.of(filePath));
@@ -43,6 +57,13 @@ public class TxtManager {
             System.out.println("Error insertando en el árbol");
         }
     }
+
+    /**
+     * Lee un archivo de texto y traduce cada palabra usando el diccionario.
+     * Mantiene la puntuación original.
+     * 
+     * @param filePath ruta del archivo a traducir
+     */
     public void traducirArchivo(String filePath)
     {
         try {
@@ -69,6 +90,14 @@ public class TxtManager {
             System.out.println("Error leyendo archivo");
         }
     }
+
+    /**
+     * Traduce una sola palabra usando el árbol.
+     * Si no existe en el diccionario, la marca con asteriscos.
+     * 
+     * @param clave palabra a traducir
+     * @return traducción o palabra marcada si no existe
+     */
     private String traducirPalabra(String clave)
     {
         clave = clave.toLowerCase();
@@ -81,6 +110,10 @@ public class TxtManager {
         }
         return nodo.value().getValue();
     }
+
+    /**
+     * Muestra el contenido del diccionario usando recorrido in-order.
+     */
     public void mostrarDiccionario()
     {
         arbol.inOrder();
